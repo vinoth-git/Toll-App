@@ -69,7 +69,6 @@ function AddTollForm(props: Props) {
                     newValue[e.target.value].isSelected = true;
                     setCarList(newValue);
                   }}
-                  isDisabled={c.isSelected}
                 />
                 <input
                   required
