@@ -1,16 +1,33 @@
-import Button from "../../components/Button";
-import Search from "../../components/search";
+import CustomTable from "../../components/CustomTable";
+import Header from "../../components/Header";
 
-interface Props {}
+interface Props {
+  handleButton: any;
+}
 
 function HomePage(props: Props) {
+  const { handleButton } = props;
   return (
     <>
-      <div>
-        <p>Toll entries / Vehicle entries</p>
-        <Search />
-        <Button label="Add vehicle entry" onClick={() => {}} />
-      </div>
+      <Header
+        title="Toll entries / Vehicle entries"
+        handleButton={handleButton}
+      />
+      <CustomTable
+        tableHead={[
+          "Vehicle Type",
+          "Vehicle Number",
+          "Date/Time",
+          "Toll Name",
+          "Tarrif",
+        ]}
+        tableContent={[
+          { data: ["vinoth", 21] },
+          { data: ["vinoth", 21] },
+          { data: ["vinoth", 21] },
+          { data: ["vinoth", 21] },
+        ]}
+      />
     </>
   );
 }
