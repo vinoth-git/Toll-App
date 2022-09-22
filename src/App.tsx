@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import AddEntryForm from "./components/AddEntryForm";
@@ -39,7 +39,7 @@ function App() {
       )}
       {isVehicleEntry && (
         <Popup handleButton={handleButton}>
-          <AddEntryForm />
+          <AddEntryForm handleButton={handleButton} />
         </Popup>
       )}
     </div>

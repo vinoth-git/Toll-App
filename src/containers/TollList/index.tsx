@@ -9,13 +9,29 @@ interface Props {
 function TollList(props: Props) {
   const { handleButton } = props;
   const [tollList, setTollList] = useState([]);
+  const [searchKey, setSearchKey] = useState("");
 
   function fetchTollList() {
     let tollList = localStorage.getItem("tollList") || "";
-    let parsedList = JSON.parse(tollList);
+    let parsedList = tollList && JSON.parse(tollList);
     if (parsedList && parsedList.length > 0) {
       setTollList(parsedList);
     }
+  }
+
+  function onSearchClick() {
+    let tollList = localStorage.getItem("tollList") || "";
+    let parsedList = tollList && JSON.parse(tollList);
+    let data: any = [];
+    if (searchKey === "" || !searchKey) {
+      window.location.reload();
+    }
+    parsedList.map((item: any) => {
+      if (item.tollName.includes(searchKey)) {
+        data = [...data, item];
+      }
+    });
+    setTollList(data);
   }
 
   useEffect(() => {
@@ -32,6 +48,9 @@ function TollList(props: Props) {
         title="Tollgate List"
         isTollList={true}
         handleButton={handleButton}
+        isFilter={false}
+        setSearchKey={setSearchKey}
+        onSearchClick={onSearchClick}
       />
       <CustomTable
         tableHead={[

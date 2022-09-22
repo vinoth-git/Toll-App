@@ -99,7 +99,7 @@ function AddTollForm(props: Props) {
           onClick={(e: any) => {
             e.preventDefault();
             let tollList = localStorage.getItem("tollList") || "";
-            let newTollList = JSON.parse(tollList);
+            let newTollList = tollList && JSON.parse(tollList);
             localStorage.setItem(
               "tollList",
               JSON.stringify([

@@ -4,16 +4,40 @@ interface Props {
   onChange: any;
   data?: any;
   isDisabled?: boolean;
+  isEntry?: boolean;
 }
 
 function Select(props: Props) {
-  const { onChange, data = [], isDisabled = false } = props;
+  const {
+    onChange,
+    isEntry = false,
+    data = [
+      {
+        vehilceName: `Car/Jeep/Van`,
+        isSelected: false,
+      },
+      {
+        vehilceName: `Truck/bus`,
+        isSelected: false,
+      },
+      {
+        vehilceName: `Heavy Vehicle`,
+        isSelected: false,
+      },
+      {
+        vehilceName: `LCV`,
+        isSelected: false,
+      },
+    ],
+    isDisabled,
+  } = props;
   return (
     <select
       required
       onChange={onChange}
       placeholder="Select Vehicle types"
       id="cars"
+      disabled={isDisabled}
     >
       <option value="" selected hidden disabled={true}>
         Select Vehicle types
@@ -21,14 +45,13 @@ function Select(props: Props) {
       {data &&
         data.length > 0 &&
         data.map((c: any, index: number) => (
-          <option value={index} disabled={c.isSelected}>
+          <option
+            value={isEntry ? c.vehilceName : index}
+            disabled={c.isSelected}
+          >
             {c.vehilceName}
           </option>
         ))}
-      {/* <option value="car">Car/Jeep/Van</option>
-      <option value="lcv">LCV</option>
-      <option value="bus">Truck/Bus</option>
-      <option value="heavy">Heavy Vehicle</option> */}
     </select>
   );
 }
